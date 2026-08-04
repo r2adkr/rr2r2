@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko" class="dark scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>여규민 - 개발자 포트폴리오</title>
-  
+
   <!-- Google Fonts (Inter & JetBrains Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
+  <!-- Anime.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -43,89 +49,119 @@
       }
     }
   </script>
-  
+
   <style>
     /* Custom Scrollbar & Modal Backdrop styling */
     ::-webkit-scrollbar {
       width: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: transparent;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #3f3f46;
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #52525b;
     }
+
+    /* Initial state for Anime.js elements */
+    .hero-anim,
+    .card-anim {
+      opacity: 0;
+      transform: translateY(20px);
+    }
   </style>
 </head>
-<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased min-h-screen transition-colors duration-200 selection:bg-zinc-800 selection:text-zinc-100 dark:selection:bg-zinc-200 dark:selection:text-zinc-900">
+
+<body
+  class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased min-h-screen transition-colors duration-200 selection:bg-zinc-800 selection:text-zinc-100 dark:selection:bg-zinc-200 dark:selection:text-zinc-900">
 
   <!-- Navigation Bar (Shadcn Navbar Style) -->
-  <header class="sticky top-0 z-40 backdrop-blur-md dark:bg-zinc-950/80 bg-zinc-50/80 border-b dark:border-zinc-800 border-zinc-200 transition-colors">
+  <header
+    class="sticky top-0 z-40 backdrop-blur-md dark:bg-zinc-950/80 bg-zinc-50/80 border-b dark:border-zinc-800 border-zinc-200 transition-colors">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
       <a href="#" class="flex items-center space-x-2.5 group">
-        <div class="w-7 h-7 rounded-md dark:bg-zinc-100 bg-zinc-900 dark:text-zinc-900 text-zinc-100 text-xs flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm">
+        <div
+          class="w-7 h-7 rounded-md dark:bg-zinc-100 bg-zinc-900 dark:text-zinc-900 text-zinc-100 text-xs flex items-center justify-center transition-transform group-hover:scale-105 shadow-sm">
           <i class="fa-solid fa-code text-[11px]"></i>
         </div>
         <div class="flex items-center gap-2">
           <span class="font-semibold text-sm tracking-tight dark:text-zinc-100 text-zinc-900">여규민</span>
-          <span class="text-[11px] font-mono px-1.5 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-100 dark:text-zinc-400 text-zinc-600">Dev</span>
+          <span
+            class="text-[11px] font-mono px-1.5 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-100 dark:text-zinc-400 text-zinc-600">Dev</span>
         </div>
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center space-x-6 text-xs font-medium dark:text-zinc-400 text-zinc-600">
-        <a href="#about" class="hover:dark:text-zinc-100 hover:text-zinc-900 transition-colors">소개 & 기술</a>
+        <a href="#school-project" class="hover:dark:text-zinc-100 hover:text-zinc-900 transition-colors">학교 소개 프로젝트</a>
         <a href="#projects" class="hover:dark:text-zinc-100 hover:text-zinc-900 transition-colors">대표 프로젝트</a>
         <a href="#competition" class="hover:dark:text-zinc-100 hover:text-zinc-900 transition-colors">대회 프로젝트</a>
       </nav>
 
       <div class="flex items-center gap-2">
         <!-- Light / Dark Mode Toggle Button (Icon only) -->
-        <button id="themeToggleBtn" onclick="toggleTheme()" class="w-8 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white flex items-center justify-center transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-sm" aria-label="테마 전환" title="라이트/다크 모드 전환">
+        <button id="themeToggleBtn" onclick="toggleTheme()"
+          class="w-8 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white flex items-center justify-center transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-sm"
+          aria-label="테마 전환" title="라이트/다크 모드 전환">
           <i id="themeIcon" class="fa-solid fa-moon text-xs text-zinc-900 dark:text-zinc-100"></i>
         </button>
 
-        <a href="https://github.com/r2adkr" target="_blank" rel="noopener noreferrer" class="h-8 px-2.5 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white text-xs font-mono dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-1.5 shadow-sm">
+        <a href="https://github.com/r2adkr" target="_blank" rel="noopener noreferrer"
+          class="h-8 px-2.5 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white text-xs font-mono dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-1.5 shadow-sm">
           <i class="fa-brands fa-github text-sm"></i>
           <span class="hidden sm:inline">GitHub</span>
         </a>
 
         <!-- Mobile Menu Button -->
-        <button onclick="toggleMobileMenu()" class="md:hidden w-8 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white flex items-center justify-center text-xs dark:text-zinc-300 text-zinc-700">
+        <button onclick="toggleMobileMenu()"
+          class="md:hidden w-8 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white flex items-center justify-center text-xs dark:text-zinc-300 text-zinc-700">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobileMenu" class="hidden md:hidden border-b dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-50 px-4 py-3 space-y-2 text-xs font-medium">
-      <a href="#about" onclick="toggleMobileMenu()" class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">소개 & 기술</a>
-      <a href="#projects" onclick="toggleMobileMenu()" class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">대표 프로젝트</a>
-      <a href="#competition" onclick="toggleMobileMenu()" class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">대회 프로젝트</a>
+    <div id="mobileMenu"
+      class="hidden md:hidden border-b dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-50 px-4 py-3 space-y-2 text-xs font-medium">
+      <a href="#school-project" onclick="toggleMobileMenu()"
+        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">학교 소개
+        프로젝트</a>
+      <a href="#projects" onclick="toggleMobileMenu()"
+        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">대표 프로젝트</a>
+      <a href="#competition" onclick="toggleMobileMenu()"
+        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">대회 프로젝트</a>
     </div>
   </header>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
     <!-- Hero Section (Centered Minimal Layout) -->
     <section class="text-center max-w-4xl mx-auto mb-20 w-full px-2">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight break-keep text-zinc-900 dark:text-zinc-50 mb-6 leading-relaxed sm:leading-normal">
-        안녕하세요, 소프트웨어 개발자 <span class="whitespace-nowrap"><span class="inline-block pb-1 pt-0.5 px-1 bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-500 dark:from-zinc-100 dark:via-zinc-300 dark:to-zinc-500 bg-clip-text text-transparent">여규민</span>입니다.</span>
+      <h1
+        class="hero-anim text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight break-keep text-zinc-900 dark:text-zinc-50 mb-6 leading-relaxed sm:leading-normal">
+        안녕하세요, 소프트웨어 개발자 <span class="whitespace-nowrap"><span
+            class="inline-block pb-1 pt-0.5 px-1 bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-500 dark:from-zinc-100 dark:via-zinc-300 dark:to-zinc-500 bg-clip-text text-transparent">여규민</span>입니다.</span>
       </h1>
 
-      <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-2xl mx-auto font-normal break-keep">
-        오픈소스 프로젝트와 게임 분야에 관심이 많으며, Python, TypeScript, Rust, C, C# 등 다양한 언어와 도구들을 경험해 보았습니다. 새로운 프로젝트를 통해 직접 만들고 배워나가는 과정을 즐깁니다.
+      <p
+        class="hero-anim text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 max-w-2xl mx-auto font-normal break-keep">
+        오픈소스 프로젝트와 게임 분야에 관심이 많으며, Python, TypeScript, Rust, C, C# 등 다양한 언어와 도구들을 경험해 보았습니다. 새로운 프로젝트를 통해 직접 만들고 배워나가는
+        과정을 즐깁니다.
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-3">
-        <a href="https://github.com/r2adkr" target="_blank" rel="noopener noreferrer" class="h-9 px-4 rounded-md dark:bg-zinc-100 bg-zinc-900 dark:text-zinc-900 text-zinc-100 text-xs font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors inline-flex items-center gap-2 shadow-sm">
+      <div class="hero-anim flex flex-wrap items-center justify-center gap-3">
+        <a href="https://github.com/r2adkr" target="_blank" rel="noopener noreferrer"
+          class="h-9 px-4 rounded-md dark:bg-zinc-100 bg-zinc-900 dark:text-zinc-900 text-zinc-100 text-xs font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors inline-flex items-center gap-2 shadow-sm">
           <i class="fa-brands fa-github text-sm"></i>
           <span>GitHub 방문하기</span>
         </a>
-        <a href="#projects" class="h-9 px-4 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white text-xs font-medium dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors inline-flex items-center gap-2 shadow-sm">
+        <a href="#school-project"
+          class="h-9 px-4 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white text-xs font-medium dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors inline-flex items-center gap-2 shadow-sm">
           <span>프로젝트 둘러보기</span>
           <i class="fa-solid fa-arrow-down text-[10px]"></i>
         </a>
@@ -133,67 +169,93 @@
     </section>
 
     <!-- Cards Grid Section -->
-    <section id="about" class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-      
-      <!-- Card 01: 소개 & 기술 스택 -->
-      <div id="about" class="rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between hover:border-zinc-400 dark:hover:border-zinc-700 transition-all shadow-sm hover:shadow-md group">
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+
+      <!-- Card 01: 학교 소개 프로젝트 -->
+      <div id="school-project"
+        class="card-anim rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between hover:border-zinc-400 dark:hover:border-zinc-700 transition-all shadow-sm hover:shadow-md group">
         <div>
           <div class="flex items-center justify-between mb-4">
-            <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500">01 / PROFILE</span>
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500">01 / SCHOOL PROJECT</span>
+            <span
+              class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Web</span>
           </div>
 
-          <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
-            소개 & 경험해 본 기술
+          <h2
+            class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+            학교 소개 프로젝트
           </h2>
 
           <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
-            배움과 도전을 즐기는 개발자입니다. AI소프트웨어과에서 기초를 다지며 다양한 언어와 프로젝트를 접해보고 경험을 쌓아가고 있습니다.
+            학교 소개, 전공 학과 안내, 주요 교육 사업부터 인포그래픽 분석과 소개 동영상까지 한눈에 살펴볼 수 있는 인터랙티브 웹 프로젝트입니다.
           </p>
 
-          <div class="space-y-3 mb-6">
-            <div class="flex items-center justify-between text-xs py-1.5 border-b dark:border-zinc-800/80 border-zinc-100">
-              <span class="text-zinc-500 dark:text-zinc-400">전공</span>
-              <span class="font-medium text-zinc-800 dark:text-zinc-200">AI소프트웨어과</span>
+          <div class="space-y-2 mb-6">
+            <div class="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
+              <i class="fa-solid fa-check text-[10px] text-zinc-400"></i>
+              <span>학교 소개 & 전공 학과 상세 안내</span>
             </div>
-            <div class="flex items-center justify-between text-xs py-1.5 border-b dark:border-zinc-800/80 border-zinc-100">
-              <span class="text-zinc-500 dark:text-zinc-400">주요 관심사</span>
-              <span class="font-medium text-zinc-800 dark:text-zinc-200">오픈소스, 게임</span>
+            <div class="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
+              <i class="fa-solid fa-check text-[10px] text-zinc-400"></i>
+              <span>주요 교육 사업 및 인포그래픽 데이터 분석</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
+              <i class="fa-solid fa-check text-[10px] text-zinc-400"></i>
+              <span>학교 홍보 미디어 소개 동영상 탑재</span>
             </div>
           </div>
 
           <!-- Tech Stack Badges -->
           <div class="flex flex-wrap gap-1.5 mb-6">
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">Python</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">JavaScript</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">TypeScript</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">Rust</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">C</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">Git</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">PostgreSQL</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">HTML5</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">CSS3</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">JavaScript</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">GitHub
+              Pages</span>
           </div>
         </div>
 
-        <button onclick="openModal('profileModal')" class="w-full h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-medium dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
-          <span>프로필 자세히 보기</span>
-          <i class="fa-solid fa-chevron-right text-[10px]"></i>
-        </button>
+        <div class="flex items-center gap-2">
+          <a href="https://github.com/r2adkr/rr2r2" target="_blank" rel="noopener noreferrer"
+            class="h-8 px-2.5 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1 shadow-sm"
+            title="GitHub 저장소">
+            <i class="fa-brands fa-github text-xs"></i>
+          </a>
+          <a href="https://r2adkr.github.io/rr2r2/project1/index.html" target="_blank" rel="noopener noreferrer"
+            class="h-8 px-2.5 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1 shadow-sm"
+            title="웹사이트 방문">
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+          <button onclick="openModal('schoolModal')"
+            class="flex-1 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-medium dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+            <span>자세히 보기</span>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Card 02: 대표 프로젝트 - InsanityMod -->
-      <div id="projects" class="rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between hover:border-zinc-400 dark:hover:border-zinc-700 transition-all shadow-sm hover:shadow-md group">
+      <div id="projects"
+        class="card-anim rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between hover:border-zinc-400 dark:hover:border-zinc-700 transition-all shadow-sm hover:shadow-md group">
         <div>
           <div class="flex items-center justify-between mb-4">
             <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500">02 / FEATURED PROJECT</span>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">Modding</span>
+            <span
+              class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">Modding</span>
           </div>
 
-          <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+          <h2
+            class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
             InsanityMod
           </h2>
 
           <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
-            Lethal Company 게임 내 플레이어 광기(Sanity) 수치를 실시간 추적하여 3D 환청 오디오 재생, 터널 비전 연출, 카메라 셰이크 등 몰입감 넘치는 공포 기믹을 제공하는 C# BepInEx 모드입니다.
+            Lethal Company 게임 내 플레이어 광기(Sanity) 수치를 실시간 추적하여 3D 환청 오디오 재생, 터널 비전 연출, 카메라 셰이크 등 몰입감 넘치는 공포 기믹을 제공하는 C#
+            BepInEx 모드입니다.
           </p>
 
           <div class="space-y-2 mb-6">
@@ -212,18 +274,24 @@
           </div>
 
           <div class="flex flex-wrap gap-1.5 mb-6">
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">C#</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">BepInEx</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">Unity</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">WeatherRegistry</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">C#</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">BepInEx</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">Unity</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">WeatherRegistry</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <a href="https://github.com/r2adkr/insanity" target="_blank" rel="noopener noreferrer" class="h-8 px-3 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1 shadow-sm">
+          <a href="https://github.com/r2adkr/insanity" target="_blank" rel="noopener noreferrer"
+            class="h-8 px-3 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1 shadow-sm">
             <i class="fa-brands fa-github text-xs"></i>
           </a>
-          <button onclick="openModal('insanityModal')" class="flex-1 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-medium dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+          <button onclick="openModal('insanityModal')"
+            class="flex-1 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-medium dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
             <span>자세히 보기</span>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
@@ -231,14 +299,18 @@
       </div>
 
       <!-- Card 03: 대회 프로젝트 - powder-orm -->
-      <div id="competition" class="rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between hover:border-zinc-400 dark:hover:border-zinc-700 transition-all shadow-sm hover:shadow-md group">
+      <div id="competition"
+        class="card-anim rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between hover:border-zinc-400 dark:hover:border-zinc-700 transition-all shadow-sm hover:shadow-md group">
         <div>
           <div class="flex items-center justify-between mb-4">
             <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500">03 / COMPETITION</span>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">Open Source</span>
+            <span
+              class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">Open
+              Source</span>
           </div>
 
-          <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+          <h2
+            class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
             powder-orm
           </h2>
 
@@ -262,21 +334,30 @@
           </div>
 
           <div class="flex flex-wrap gap-1.5 mb-6">
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">TypeScript</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">Node.js</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">SQL</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">ORM</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">TypeScript</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">Node.js</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">SQL</span>
+            <span
+              class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">ORM</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <a href="https://github.com/OSS-Ncode/powder-orm" target="_blank" rel="noopener noreferrer" class="h-8 px-2.5 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1 shadow-sm" title="GitHub 저장소">
+          <a href="https://github.com/OSS-Ncode/powder-orm" target="_blank" rel="noopener noreferrer"
+            class="h-8 px-2.5 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1 shadow-sm"
+            title="GitHub 저장소">
             <i class="fa-brands fa-github text-xs"></i>
           </a>
-          <a href="https://docs.powder-orm.info/" target="_blank" rel="noopener noreferrer" class="h-8 px-2.5 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1 shadow-sm" title="공식 문서">
+          <a href="https://docs.powder-orm.info/" target="_blank" rel="noopener noreferrer"
+            class="h-8 px-2.5 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-mono dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1 shadow-sm"
+            title="공식 문서">
             <i class="fa-solid fa-book-bookmark text-xs"></i>
           </a>
-          <button onclick="openModal('competitionModal')" class="flex-1 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-medium dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+          <button onclick="openModal('competitionModal')"
+            class="flex-1 h-8 rounded-md border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-medium dark:text-zinc-300 text-zinc-700 transition-colors flex items-center justify-center gap-1.5 shadow-sm">
             <span>자세히 보기</span>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
@@ -286,17 +367,20 @@
     </section>
   </main>
 
-  <!-- MODAL 01: Profile Modal -->
-  <div id="profileModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeModal('profileModal')"></div>
-    
-    <div class="relative w-full max-w-xl rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white p-6 shadow-2xl z-10 my-8">
+  <!-- MODAL 01: School Project Modal -->
+  <div id="schoolModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div id="schoolModalBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity opacity-0"
+      onclick="closeModal('schoolModal')"></div>
+
+    <div id="schoolModalBox"
+      class="relative w-full max-w-xl rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white p-6 shadow-2xl z-10 my-8 opacity-0 scale-95">
       <div class="flex items-start justify-between pb-4 border-b dark:border-zinc-800 border-zinc-200">
         <div>
-          <h3 class="text-lg font-semibold dark:text-zinc-100 text-zinc-900">여규민 - 상세 프로필</h3>
-          <p class="text-xs text-zinc-500 font-mono mt-0.5">AI소프트웨어과</p>
+          <h3 class="text-lg font-semibold dark:text-zinc-100 text-zinc-900">학교 소개 프로젝트 상세 정보</h3>
+          <p class="text-xs text-zinc-500 font-mono mt-0.5">Interactive Web Application</p>
         </div>
-        <button onclick="closeModal('profileModal')" class="w-7 h-7 rounded-md border dark:border-zinc-800 border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+        <button onclick="closeModal('schoolModal')"
+          class="w-7 h-7 rounded-md border dark:border-zinc-800 border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
           <i class="fa-solid fa-xmark text-xs"></i>
         </button>
       </div>
@@ -304,61 +388,96 @@
       <div class="py-5 space-y-6 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
         <div class="space-y-2">
           <h4 class="font-medium text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
-            <i class="fa-solid fa-code text-zinc-500"></i>
-            <span>경험해 본 기술 & 프로젝트 탐구</span>
+            <i class="fa-solid fa-graduation-cap text-emerald-500"></i>
+            <span>프로젝트 목적 & 개요</span>
           </h4>
           <p class="pl-6">
-            Python, TypeScript, Rust, C, C# 등 필요에 따라 다양한 언어를 접하고 활용해 보았습니다. 관심 있는 게임 모딩이나 오픈소스 ORM 프로젝트 등을 진행하며 기술 경험을 넓혀가고 있습니다.
+            학교의 비전과 주요 정보를 사용자가 쉽게 파악할 수 있도록 구성한 종합 웹 사이트 프로젝트입니다. 전공 학과 안내부터 주요 교육 사업, 데이터 기반 인포그래픽, 미디어 영상까지 한눈에 살펴볼 수
+            있도록 직관적인 UI로 설계했습니다.
           </p>
         </div>
 
         <div class="space-y-2">
           <h4 class="font-medium text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
-            <i class="fa-solid fa-users text-zinc-500"></i>
-            <span>개발 및 협업 방식</span>
+            <i class="fa-solid fa-list-check text-emerald-500"></i>
+            <span>주요 구성 콘텐츠</span>
           </h4>
-          <p class="pl-6">
-            Git 기반의 버전 관리를 활용하며, 코드 리뷰나 이슈 트래킹을 통한 원활한 소통을 중요하게 여깁니다. 꾸준한 기록과 정리로 협업의 효율을 높이고자 합니다.
-          </p>
+          <ul class="pl-6 space-y-2 text-zinc-500 dark:text-zinc-400">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-school text-[11px] text-emerald-500 mt-0.5"></i>
+              <span><strong class="text-zinc-700 dark:text-zinc-300">학교 소개:</strong> 학교의 개요, 교육 목표 및 안내 정보 수록</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-book-open text-[11px] text-emerald-500 mt-0.5"></i>
+              <span><strong class="text-zinc-700 dark:text-zinc-300">전공 학과 안내:</strong> 학과별 특성 및 주요 커리큘럼 소개</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-chart-line text-[11px] text-emerald-500 mt-0.5"></i>
+              <span><strong class="text-zinc-700 dark:text-zinc-300">주요 교육 사업:</strong> 학교에서 운영 중인 특성화 사업 및 맞춤형 교육
+                프로그램</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-chart-pie text-[11px] text-emerald-500 mt-0.5"></i>
+              <span><strong class="text-zinc-700 dark:text-zinc-300">인포그래픽 & 분석:</strong> 핵심 수치 및 시각화 데이터 그래픽 수록</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-circle-play text-[11px] text-emerald-500 mt-0.5"></i>
+              <span><strong class="text-zinc-700 dark:text-zinc-300">소개 동영상:</strong> 생생한 현장을 담은 학교 홍보 동영상 미디어
+                임베드</span>
+            </li>
+          </ul>
         </div>
 
         <div class="space-y-2">
           <h4 class="font-medium text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
-            <i class="fa-solid fa-layer-group text-zinc-500"></i>
-            <span>사용해 본 언어 & 도구</span>
+            <i class="fa-solid fa-code text-emerald-500"></i>
+            <span>사용 언어 및 도구</span>
           </h4>
           <div class="pl-6 flex flex-wrap gap-1.5 pt-1">
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">Python</span>
+            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">HTML5</span>
+            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">CSS3</span>
             <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">JavaScript</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">TypeScript</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">Rust</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">C</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">C#</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">Git / GitHub</span>
-            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">PostgreSQL</span>
+            <span class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 font-mono">Git / GitHub
+              Pages</span>
           </div>
         </div>
       </div>
 
-      <div class="pt-4 border-t dark:border-zinc-800 border-zinc-200 flex justify-end">
-        <button onclick="closeModal('profileModal')" class="h-8 px-4 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-medium dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-          닫기
-        </button>
+      <div class="pt-4 border-t dark:border-zinc-800 border-zinc-200 flex items-center justify-between">
+        <a href="https://r2adkr.github.io/rr2r2/project1/index.html" target="_blank" rel="noopener noreferrer"
+          class="text-xs font-mono text-emerald-500 hover:underline inline-flex items-center gap-1">
+          <span>사이트 바로가기</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+        <div class="flex items-center gap-2">
+          <a href="https://github.com/r2adkr/rr2r2" target="_blank" rel="noopener noreferrer"
+            class="h-8 px-3 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-mono dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-1">
+            <i class="fa-brands fa-github text-xs"></i>
+            <span>GitHub</span>
+          </a>
+          <button onclick="closeModal('schoolModal')"
+            class="h-8 px-4 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-medium dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+            닫기
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- MODAL 02: InsanityMod Modal -->
   <div id="insanityModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeModal('insanityModal')"></div>
-    
-    <div class="relative w-full max-w-xl rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white p-6 shadow-2xl z-10 my-8">
+    <div id="insanityModalBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity opacity-0"
+      onclick="closeModal('insanityModal')"></div>
+
+    <div id="insanityModalBox"
+      class="relative w-full max-w-xl rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white p-6 shadow-2xl z-10 my-8 opacity-0 scale-95">
       <div class="flex items-start justify-between pb-4 border-b dark:border-zinc-800 border-zinc-200">
         <div>
           <h3 class="text-lg font-semibold dark:text-zinc-100 text-zinc-900">InsanityMod 상세 정보</h3>
           <p class="text-xs text-zinc-500 font-mono mt-0.5">Lethal Company V80-81 모드 프로젝트</p>
         </div>
-        <button onclick="closeModal('insanityModal')" class="w-7 h-7 rounded-md border dark:border-zinc-800 border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+        <button onclick="closeModal('insanityModal')"
+          class="w-7 h-7 rounded-md border dark:border-zinc-800 border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
           <i class="fa-solid fa-xmark text-xs"></i>
         </button>
       </div>
@@ -370,7 +489,8 @@
             <span>광기(Sanity) 실시간 수치 메커니즘</span>
           </h4>
           <p class="pl-6">
-            시설 내부 입장 시 광기 수치가 점진적으로 증가(혼자 있을 시 약 10분 만에 100% 도달)하며, 야간/Eclipse/수중 환경 및 적 근처 시 가속화됩니다. 동료와 근접해 있거나 전등을 켜두면 회복됩니다.
+            시설 내부 입장 시 광기 수치가 점진적으로 증가(혼자 있을 시 약 10분 만에 100% 도달)하며, 야간/Eclipse/수중 환경 및 적 근처 시 가속화됩니다. 동료와 근접해 있거나 전등을
+            켜두면 회복됩니다.
           </p>
         </div>
 
@@ -380,8 +500,10 @@
             <span>단계별 시각 및 오디오 환각 연출</span>
           </h4>
           <ul class="pl-6 space-y-1 list-disc list-inside text-zinc-500 dark:text-zinc-400">
-            <li><strong class="text-zinc-700 dark:text-zinc-300">70%:</strong> Dissonance VOIP 버퍼를 활용한 3D 위치 왜곡 음성 재생</li>
-            <li><strong class="text-zinc-700 dark:text-zinc-300">80%:</strong> 붉은 펄스 터널 비전(Vignette) 및 Ghost Girl 타겟 속도 증가</li>
+            <li><strong class="text-zinc-700 dark:text-zinc-300">70%:</strong> Dissonance VOIP 버퍼를 활용한 3D 위치 왜곡 음성 재생
+            </li>
+            <li><strong class="text-zinc-700 dark:text-zinc-300">80%:</strong> 붉은 펄스 터널 비전(Vignette) 및 Ghost Girl 타겟 속도
+              증가</li>
             <li><strong class="text-zinc-700 dark:text-zinc-300">90%:</strong> Perlin-noise 기반 카메라 흔들림 현상</li>
             <li><strong class="text-zinc-700 dark:text-zinc-300">100%:</strong> 이동 정지 후 암전되며 Masked 몬스터로 변신 사망</li>
           </ul>
@@ -399,16 +521,20 @@
       </div>
 
       <div class="pt-4 border-t dark:border-zinc-800 border-zinc-200 flex items-center justify-between">
-        <a href="https://thunderstore.io/c/lethal-company/p/Meeee/InsanityMod/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-purple-500 hover:underline inline-flex items-center gap-1">
+        <a href="https://thunderstore.io/c/lethal-company/p/Meeee/InsanityMod/" target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs font-mono text-purple-500 hover:underline inline-flex items-center gap-1">
           <span>Thunderstore 페이지</span>
           <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
         </a>
         <div class="flex items-center gap-2">
-          <a href="https://github.com/r2adkr/insanity" target="_blank" rel="noopener noreferrer" class="h-8 px-3 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-mono dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-1">
+          <a href="https://github.com/r2adkr/insanity" target="_blank" rel="noopener noreferrer"
+            class="h-8 px-3 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-mono dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-1">
             <i class="fa-brands fa-github text-xs"></i>
             <span>GitHub</span>
           </a>
-          <button onclick="closeModal('insanityModal')" class="h-8 px-4 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-medium dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+          <button onclick="closeModal('insanityModal')"
+            class="h-8 px-4 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-medium dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
             닫기
           </button>
         </div>
@@ -417,16 +543,20 @@
   </div>
 
   <!-- MODAL 03: powder-orm Modal -->
-  <div id="competitionModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeModal('competitionModal')"></div>
-    
-    <div class="relative w-full max-w-xl rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white p-6 shadow-2xl z-10 my-8">
+  <div id="competitionModal"
+    class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div id="competitionModalBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity opacity-0"
+      onclick="closeModal('competitionModal')"></div>
+
+    <div id="competitionModalBox"
+      class="relative w-full max-w-xl rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900 bg-white p-6 shadow-2xl z-10 my-8 opacity-0 scale-95">
       <div class="flex items-start justify-between pb-4 border-b dark:border-zinc-800 border-zinc-200">
         <div>
           <h3 class="text-lg font-semibold dark:text-zinc-100 text-zinc-900">powder-orm 상세 정보</h3>
           <p class="text-xs text-zinc-500 font-mono mt-0.5">OSS-Ncode 대회 출품 오픈소스 프로젝트</p>
         </div>
-        <button onclick="closeModal('competitionModal')" class="w-7 h-7 rounded-md border dark:border-zinc-800 border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+        <button onclick="closeModal('competitionModal')"
+          class="w-7 h-7 rounded-md border dark:border-zinc-800 border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
           <i class="fa-solid fa-xmark text-xs"></i>
         </button>
       </div>
@@ -438,7 +568,8 @@
             <span>프로젝트 핵심 개요</span>
           </h4>
           <p class="pl-6">
-            데이터베이스 관계형 매핑 시 타입 추론 및 컴파일 타임 구문 검사를 강화하여, 개발 과정에서의 실수나 런타임 SQL 에러를 획기적으로 낮추기 위해 시작된 TypeScript ORM 라이브러리입니다.
+            데이터베이스 관계형 매핑 시 타입 추론 및 컴파일 타임 구문 검사를 강화하여, 개발 과정에서의 실수나 런타임 SQL 에러를 획기적으로 낮추기 위해 시작된 TypeScript ORM
+            라이브러리입니다.
           </p>
         </div>
 
@@ -466,16 +597,19 @@
       </div>
 
       <div class="pt-4 border-t dark:border-zinc-800 border-zinc-200 flex items-center justify-between">
-        <a href="https://docs.powder-orm.info/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-blue-500 hover:underline inline-flex items-center gap-1">
+        <a href="https://docs.powder-orm.info/" target="_blank" rel="noopener noreferrer"
+          class="text-xs font-mono text-blue-500 hover:underline inline-flex items-center gap-1">
           <span>docs.powder-orm.info</span>
           <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
         </a>
         <div class="flex items-center gap-2">
-          <a href="https://github.com/OSS-Ncode/powder-orm" target="_blank" rel="noopener noreferrer" class="h-8 px-3 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-mono dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-1">
+          <a href="https://github.com/OSS-Ncode/powder-orm" target="_blank" rel="noopener noreferrer"
+            class="h-8 px-3 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-mono dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-1">
             <i class="fa-brands fa-github text-xs"></i>
             <span>GitHub</span>
           </a>
-          <button onclick="closeModal('competitionModal')" class="h-8 px-4 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-medium dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+          <button onclick="closeModal('competitionModal')"
+            class="h-8 px-4 rounded-md border dark:border-zinc-800 border-zinc-200 text-xs font-medium dark:text-zinc-300 text-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
             닫기
           </button>
         </div>
@@ -488,7 +622,7 @@
     function toggleTheme() {
       const html = document.documentElement;
       const themeIcon = document.getElementById('themeIcon');
-      
+
       if (html.classList.contains('dark')) {
         html.classList.remove('dark');
         themeIcon.className = 'fa-solid fa-sun text-xs text-zinc-900';
@@ -507,30 +641,81 @@
 
     function openModal(modalId) {
       const modal = document.getElementById(modalId);
+      const backdrop = document.getElementById(modalId + 'Backdrop');
+      const box = document.getElementById(modalId + 'Box');
+
       if (modal) {
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+
+        // Anime.js transition for modal open
+        if (typeof anime !== 'undefined') {
+          anime({
+            targets: backdrop,
+            opacity: [0, 1],
+            duration: 250,
+            easing: 'easeOutQuad'
+          });
+
+          anime({
+            targets: box,
+            scale: [0.92, 1],
+            opacity: [0, 1],
+            translateY: [10, 0],
+            duration: 350,
+            easing: 'easeOutCubic'
+          });
+        } else {
+          backdrop.style.opacity = '1';
+          box.style.opacity = '1';
+          box.style.transform = 'scale(1) translateY(0)';
+        }
       }
     }
 
     function closeModal(modalId) {
       const modal = document.getElementById(modalId);
+      const backdrop = document.getElementById(modalId + 'Backdrop');
+      const box = document.getElementById(modalId + 'Box');
+
       if (modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
+        if (typeof anime !== 'undefined') {
+          anime({
+            targets: backdrop,
+            opacity: [1, 0],
+            duration: 200,
+            easing: 'easeInQuad'
+          });
+
+          anime({
+            targets: box,
+            scale: [1, 0.92],
+            opacity: [1, 0],
+            translateY: [0, 10],
+            duration: 200,
+            easing: 'easeInCubic',
+            complete: function () {
+              modal.classList.add('hidden');
+              document.body.style.overflow = 'auto';
+            }
+          });
+        } else {
+          modal.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }
       }
     }
 
     // Keyboard ESC key to close active modal
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
-        closeModal('profileModal');
+        closeModal('schoolModal');
         closeModal('insanityModal');
         closeModal('competitionModal');
       }
     });
 
-    // Sync theme icon on load
+    // Run Anime.js stagger animations on page load
     window.addEventListener('DOMContentLoaded', () => {
       const html = document.documentElement;
       const themeIcon = document.getElementById('themeIcon');
@@ -539,7 +724,31 @@
       } else {
         themeIcon.className = 'fa-solid fa-sun text-xs text-zinc-900';
       }
+
+      // Anime.js initial stagger animation
+      if (typeof anime !== 'undefined') {
+        // Hero Section Stagger
+        anime({
+          targets: '.hero-anim',
+          translateY: [25, 0],
+          opacity: [0, 1],
+          delay: anime.stagger(150, { start: 100 }),
+          duration: 800,
+          easing: 'easeOutCubic'
+        });
+
+        // Cards Grid Stagger
+        anime({
+          targets: '.card-anim',
+          translateY: [30, 0],
+          opacity: [0, 1],
+          delay: anime.stagger(180, { start: 500 }),
+          duration: 850,
+          easing: 'easeOutCubic'
+        });
+      }
     });
   </script>
 </body>
+
 </html>
