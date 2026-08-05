@@ -154,6 +154,8 @@
         class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">InsanityMod</a>
       <a href="#cards-section" onclick="scrollToCard(3); toggleMobileMenu();"
         class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">powder-orm</a>
+      <a href="#certifications-section" onclick="toggleMobileMenu();"
+        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">보유 자격증</a>
     </div>
   </header>
 
@@ -187,7 +189,7 @@
     </section>
 
     <!-- Carousel Section with Left / Right Navigation Controls -->
-    <section id="cards-section" class="pt-4 relative">
+    <section id="cards-section" class="pt-4 relative mb-20">
       <!-- Carousel Header Controls -->
       <div class="flex items-center justify-between mb-6 px-1">
         <div>
@@ -475,6 +477,290 @@
               <span>자세히 보기</span>
               <i class="fa-solid fa-chevron-right text-[10px]"></i>
             </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NEW SECTION: Certifications Section -->
+    <section id="certifications-section" class="pt-8 border-t dark:border-zinc-800/80 border-zinc-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">보유 자격증 및 수료증</h2>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">취득한 국가기술자격 및 전문 자격 목록입니다</p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div
+          class="flex items-center gap-1.5 p-1 rounded-lg border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/60 bg-zinc-100 self-start sm:self-auto">
+          <button onclick="switchCertTab('all')" id="btnCertAll"
+            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all dark:bg-zinc-100 bg-zinc-900 dark:text-zinc-900 text-zinc-100 shadow-sm">
+            전체 보기
+          </button>
+          <button onclick="switchCertTab('national')" id="btnCertNational"
+            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all dark:text-zinc-400 text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100">
+            국가기술/공인
+          </button>
+          <button onclick="switchCertTab('itq')" id="btnCertItq"
+            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all dark:text-zinc-400 text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100">
+            ITQ / E-TEST
+          </button>
+        </div>
+      </div>
+
+      <!-- Certifications Grid -->
+      <div id="certGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Cert 1: 프로그래밍 기능사(정보처리기능사) -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="national">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400">NATIONAL CERT</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">2025.07.04</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">정보처리기능사 (프로그래밍 기능사)</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              소프트웨어 개발, 프로그래밍 언어 활용 및 데이터베이스 구축에 관한 전문 기술 및 기초 실무 자격을 취득하였습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">한국산업인력공단</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">국가기술자격</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">취득 완료</span>
+            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+          </div>
+        </div>
+
+        <!-- Cert 2: 워드프로세서 1급 -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="national">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400">NATIONAL CERT</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">2025.02.18</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">워드프로세서 1급</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              전자문서 작성 및 편집 실무, 워드프로세싱 시스템 전반에 걸친 전문 활용 능력을 입증받았습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">대한상공회의소</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">국가공인</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">취득 완료</span>
+            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+          </div>
+        </div>
+
+        <!-- Cert 3: 컴퓨터 활용능력2급 -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="national">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400">NATIONAL CERT</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">2024.03.15</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">컴퓨터활용능력 2급</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              스프레드시트 프로그램 활용 및 데이터 처리·분석에 필요한 사무자동화 실무 능력을 검증받았습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">대한상공회의소</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">국가자격</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">취득 완료</span>
+            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+          </div>
+        </div>
+
+        <!-- Cert 4: ITQ 한글 (A등급) -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="itq">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-blue-600 dark:text-blue-400">ITQ QUALIFICATION</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">2025.05.01</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">ITQ 한글 (A등급)</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              정보기술자격(ITQ) 한글 프로그램 평가에서 최고 등급인 A등급을 획득하여 문서 작성 능력을 인정받았습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">한국생산성본부(KPC)</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">국가공인</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">A등급 취득</span>
+            <i class="fa-solid fa-award text-blue-500"></i>
+          </div>
+        </div>
+
+        <!-- Cert 5: ITQ 파워포인트 (A등급) -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="itq">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-blue-600 dark:text-blue-400">ITQ QUALIFICATION</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">2025.05.01</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">ITQ 파워포인트 (A등급)</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              프레젠테이션 작성 및 슬라이드 디자인 활용 능력 평가에서 최고 등급인 A등급을 획득하였습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">한국생산성본부(KPC)</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">국가공인</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">A등급 취득</span>
+            <i class="fa-solid fa-award text-blue-500"></i>
+          </div>
+        </div>
+
+        <!-- Cert 6: ITQ 엑셀 (A등급) -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="itq">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-blue-600 dark:text-blue-400">ITQ QUALIFICATION</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">2025.05.01</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">ITQ 엑셀 (A등급)</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              스프레드시트 데이터 관리, 함수 및 차트 활용 능력 평가에서 최고 등급인 A등급을 획득하였습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">한국생산성본부(KPC)</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">국가공인</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">A등급 취득</span>
+            <i class="fa-solid fa-award text-blue-500"></i>
+          </div>
+        </div>
+
+        <!-- Cert 7: E-TEST 한글 (1등급) -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="itq">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-purple-600 dark:text-purple-400">E-TEST CERT</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">2025.04.18</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">E-TEST 한글 (1등급)</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              실무 문서 작성 및 한글 프로그램 활용 능력 평가(E-TEST)에서 최우수 등급인 1등급을 획득하였습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">대한상공회의소</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">공인자격</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">1등급 취득</span>
+            <i class="fa-solid fa-star text-purple-500"></i>
+          </div>
+        </div>
+
+        <!-- Cert 8: E-TEST 파포 (1등급) -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="itq">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-purple-600 dark:text-purple-400">E-TEST CERT</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">2025.07.14</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">E-TEST 파워포인트 (1등급)</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              프레젠테이션 제작 및 멀티미디어 활용 능력 검증(E-TEST)에서 최우수 등급인 1등급을 획득하였습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">대한상공회의소</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">공인자격</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">1등급 취득</span>
+            <i class="fa-solid fa-star text-purple-500"></i>
+          </div>
+        </div>
+
+        <!-- Cert 9: E-TEST 엑셀 (1등급) -->
+        <div
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          data-category="itq">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-purple-600 dark:text-purple-400">E-TEST CERT</span>
+              <span
+                class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">2025.12.23</span>
+            </div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-2">E-TEST 엑셀 (1등급)</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+              데이터 분석 및 스프레드시트 활용 실무 평가(E-TEST)에서 최우수 등급인 1등급을 획득하였습니다.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">대한상공회의소</span>
+              <span
+                class="px-2 py-0.5 rounded border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-100 text-[11px] font-mono dark:text-zinc-300 text-zinc-700">공인자격</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between pt-4 border-t dark:border-zinc-800 border-zinc-200 text-xs text-zinc-400">
+            <span class="font-mono">1등급 취득</span>
+            <i class="fa-solid fa-star text-purple-500"></i>
           </div>
         </div>
 
@@ -954,6 +1240,33 @@
         closeModal('competitionModal');
       }
     });
+
+    // Certifications Tab Switching Function
+    function switchCertTab(category) {
+      const cards = document.querySelectorAll('.cert-card-item');
+      const buttons = document.querySelectorAll('.cert-tab-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('dark:bg-zinc-100', 'bg-zinc-900', 'dark:text-zinc-900', 'text-zinc-100', 'shadow-sm');
+        btn.classList.add('dark:text-zinc-400', 'text-zinc-600');
+      });
+
+      const activeBtnId = category === 'all' ? 'btnCertAll' : (category === 'national' ? 'btnCertNational' : 'btnCertItq');
+      const activeBtn = document.getElementById(activeBtnId);
+      if (activeBtn) {
+        activeBtn.classList.add('dark:bg-zinc-100', 'bg-zinc-900', 'dark:text-zinc-900', 'text-zinc-100', 'shadow-sm');
+        activeBtn.classList.remove('dark:text-zinc-400', 'text-zinc-600');
+      }
+
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
 
     // Run Anime.js stagger animations on page load
     window.addEventListener('DOMContentLoaded', () => {
