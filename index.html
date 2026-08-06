@@ -86,6 +86,17 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
+    /* Smooth cross-fade for tab state changes (color/background) */
+    .nav-tab,
+    .cert-tab-btn {
+      transition: background-color 300ms ease-out, color 300ms ease-out, box-shadow 300ms ease-out;
+    }
+
+    /* Theme icon transition helper */
+    #themeIcon {
+      display: inline-block;
+    }
   </style>
 </head>
 
@@ -108,16 +119,21 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-6 text-xs font-medium dark:text-zinc-400 text-zinc-600">
-        <a href="#cards-section" onclick="scrollToCard(0)"
-          class="hover:dark:text-zinc-100 hover:text-zinc-900 transition-colors">학교 소개 프로젝트</a>
-        <a href="#cards-section" onclick="scrollToCard(1)"
-          class="hover:dark:text-zinc-100 hover:text-zinc-900 transition-colors">스토리북 제작</a>
-        <a href="#cards-section" onclick="scrollToCard(2)"
-          class="hover:dark:text-zinc-100 hover:text-zinc-900 transition-colors">InsanityMod</a>
-        <a href="#cards-section" onclick="scrollToCard(3)"
-          class="hover:dark:text-zinc-100 hover:text-zinc-900 transition-colors">powder-orm</a>
+      <!-- Desktop Navigation Tabs -->
+      <nav
+        class="hidden md:flex items-center space-x-1 p-1 rounded-lg border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/60 bg-zinc-100 text-xs font-medium">
+        <button onclick="scrollToSection('hero-section')" id="navTabHome"
+          class="nav-tab px-3 py-1.5 rounded-md transition-all duration-300 ease-out dark:bg-zinc-100 dark:text-zinc-900 bg-zinc-900 text-zinc-100 shadow-sm font-semibold">
+          홈 소개
+        </button>
+        <button onclick="scrollToSection('cards-section')" id="navTabProjects"
+          class="nav-tab px-3 py-1.5 rounded-md transition-all duration-300 ease-out dark:text-zinc-300 text-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60">
+          주요 프로젝트
+        </button>
+        <button onclick="scrollToSection('certifications-section')" id="navTabCerts"
+          class="nav-tab px-3 py-1.5 rounded-md transition-all duration-300 ease-out dark:text-zinc-300 text-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60">
+          자격증 및 수료증
+        </button>
       </nav>
 
       <div class="flex items-center gap-2">
@@ -145,23 +161,18 @@
     <!-- Mobile Navigation Drawer -->
     <div id="mobileMenu"
       class="hidden md:hidden border-b dark:border-zinc-800 border-zinc-200 dark:bg-zinc-950 bg-zinc-50 px-4 py-3 space-y-2 text-xs font-medium">
-      <a href="#cards-section" onclick="scrollToCard(0); toggleMobileMenu();"
-        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">학교 소개
-        프로젝트</a>
-      <a href="#cards-section" onclick="scrollToCard(1); toggleMobileMenu();"
-        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">스토리북 제작</a>
-      <a href="#cards-section" onclick="scrollToCard(2); toggleMobileMenu();"
-        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">InsanityMod</a>
-      <a href="#cards-section" onclick="scrollToCard(3); toggleMobileMenu();"
-        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">powder-orm</a>
-      <a href="#certifications-section" onclick="toggleMobileMenu();"
+      <a href="#hero-section" onclick="scrollToSection('hero-section'); toggleMobileMenu();"
+        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">홈 소개</a>
+      <a href="#cards-section" onclick="scrollToSection('cards-section'); toggleMobileMenu();"
+        class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">주요 프로젝트</a>
+      <a href="#certifications-section" onclick="scrollToSection('certifications-section'); toggleMobileMenu();"
         class="block py-1.5 dark:text-zinc-400 text-zinc-600 hover:dark:text-zinc-100 hover:text-zinc-900">보유 자격증</a>
     </div>
   </header>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
     <!-- Hero Section (Centered Minimal Layout) -->
-    <section class="text-center max-w-4xl mx-auto mb-16 w-full px-2">
+    <section id="hero-section" class="text-center max-w-4xl mx-auto mb-16 w-full px-2 scroll-mt-24">
       <h1
         class="hero-anim text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight break-keep text-zinc-900 dark:text-zinc-50 mb-6 leading-relaxed sm:leading-normal">
         안녕하세요, 소프트웨어 개발자 <br class="sm:hidden"><span class="whitespace-nowrap"><span
@@ -189,7 +200,7 @@
     </section>
 
     <!-- Carousel Section with Left / Right Navigation Controls -->
-    <section id="cards-section" class="pt-4 relative mb-20">
+    <section id="cards-section" class="pt-4 relative mb-20 scroll-mt-24">
       <!-- Carousel Header Controls -->
       <div class="flex items-center justify-between mb-6 px-1">
         <div>
@@ -233,8 +244,7 @@
                 class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Web</span>
             </div>
 
-            <h3
-              class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 transition-colors">
               학교 소개 프로젝트
             </h3>
 
@@ -300,8 +310,7 @@
                 class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">Web</span>
             </div>
 
-            <h3
-              class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 transition-colors">
               스토리북 제작
             </h3>
 
@@ -363,8 +372,7 @@
                 class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">Modding</span>
             </div>
 
-            <h3
-              class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 transition-colors">
               InsanityMod
             </h3>
 
@@ -425,8 +433,7 @@
                 Source</span>
             </div>
 
-            <h3
-              class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2 transition-colors">
               powder-orm
             </h3>
 
@@ -484,7 +491,7 @@
     </section>
 
     <!-- NEW SECTION: Certifications Section -->
-    <section id="certifications-section" class="pt-8 border-t dark:border-zinc-800/80 border-zinc-200">
+    <section id="certifications-section" class="pt-8 border-t dark:border-zinc-800/80 border-zinc-200 scroll-mt-24">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">보유 자격증 및 수료증</h2>
@@ -495,15 +502,15 @@
         <div
           class="flex items-center gap-1.5 p-1 rounded-lg border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/60 bg-zinc-100 self-start sm:self-auto">
           <button onclick="switchCertTab('all')" id="btnCertAll"
-            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all dark:bg-zinc-100 bg-zinc-900 dark:text-zinc-900 text-zinc-100 shadow-sm">
+            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out dark:bg-zinc-100 dark:text-zinc-900 bg-zinc-900 text-zinc-100 shadow-sm font-semibold">
             전체 보기
           </button>
           <button onclick="switchCertTab('national')" id="btnCertNational"
-            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all dark:text-zinc-400 text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100">
+            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out dark:text-zinc-300 text-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60">
             국가기술/공인
           </button>
           <button onclick="switchCertTab('itq')" id="btnCertItq"
-            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all dark:text-zinc-400 text-zinc-600 hover:text-zinc-900 dark:hover:text-zinc-100">
+            class="cert-tab-btn px-3.5 py-1.5 rounded-md text-xs font-medium transition-all duration-300 ease-out dark:text-zinc-300 text-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60">
             ITQ / E-TEST
           </button>
         </div>
@@ -514,7 +521,7 @@
 
         <!-- Cert 1: 프로그래밍 기능사(정보처리기능사) -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="national">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -542,7 +549,7 @@
 
         <!-- Cert 2: 워드프로세서 1급 -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="national">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -570,7 +577,7 @@
 
         <!-- Cert 3: 컴퓨터 활용능력2급 -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="national">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -598,7 +605,7 @@
 
         <!-- Cert 4: ITQ 한글 (A등급) -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="itq">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -626,7 +633,7 @@
 
         <!-- Cert 5: ITQ 파워포인트 (A등급) -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="itq">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -654,7 +661,7 @@
 
         <!-- Cert 6: ITQ 엑셀 (A등급) -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="itq">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -682,7 +689,7 @@
 
         <!-- Cert 7: E-TEST 한글 (1등급) -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="itq">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -710,7 +717,7 @@
 
         <!-- Cert 8: E-TEST 파포 (1등급) -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="itq">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -738,7 +745,7 @@
 
         <!-- Cert 9: E-TEST 엑셀 (1등급) -->
         <div
-          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+          class="cert-card-item rounded-xl border dark:border-zinc-800 border-zinc-200 dark:bg-zinc-900/50 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-zinc-400 dark:hover:border-zinc-700 transition-all group"
           data-category="itq">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -887,7 +894,7 @@
       <div class="py-5 space-y-6 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
         <div class="space-y-2">
           <h4 class="font-medium text-zinc-900 dark:text-zinc-200 flex items-center gap-2">
-            <i class="fa-solid id-card text-amber-500"></i>
+            <i class="fa-solid fa-id-card text-amber-500"></i>
             <span>프로젝트 개요</span>
           </h4>
           <p class="pl-6">
@@ -1092,18 +1099,46 @@
     let currentSlideIndex = 0;
     const totalSlides = 4;
 
+    // Shared class sets used for tab-style active/inactive toggling
+    const NAV_ACTIVE_CLASSES = ['dark:bg-zinc-100', 'bg-zinc-900', 'dark:text-zinc-900', 'text-zinc-100', 'shadow-sm', 'font-semibold'];
+    const NAV_INACTIVE_CLASSES = ['dark:text-zinc-300', 'text-zinc-700', 'hover:text-zinc-900', 'dark:hover:text-zinc-100', 'hover:bg-zinc-200/60', 'dark:hover:bg-zinc-800/60'];
+
     function toggleTheme() {
       const html = document.documentElement;
       const themeIcon = document.getElementById('themeIcon');
+      const isDark = html.classList.contains('dark');
 
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        themeIcon.className = 'fa-solid fa-sun text-xs text-zinc-900';
-        localStorage.setItem('theme', 'light');
+      const applyIconChange = () => {
+        if (isDark) {
+          html.classList.remove('dark');
+          themeIcon.className = 'fa-solid fa-sun text-xs text-zinc-900';
+          localStorage.setItem('theme', 'light');
+        } else {
+          html.classList.add('dark');
+          themeIcon.className = 'fa-solid fa-moon text-xs text-zinc-100';
+          localStorage.setItem('theme', 'dark');
+        }
+      };
+
+      if (typeof anime !== 'undefined') {
+        anime({
+          targets: themeIcon,
+          rotate: '+=180',
+          opacity: [1, 0],
+          duration: 180,
+          easing: 'easeInQuad',
+          complete: function () {
+            applyIconChange();
+            anime({
+              targets: themeIcon,
+              opacity: [0, 1],
+              duration: 220,
+              easing: 'easeOutQuad'
+            });
+          }
+        });
       } else {
-        html.classList.add('dark');
-        themeIcon.className = 'fa-solid fa-moon text-xs text-zinc-100';
-        localStorage.setItem('theme', 'dark');
+        applyIconChange();
       }
     }
 
@@ -1120,6 +1155,30 @@
         cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
         currentSlideIndex = index;
         updateCarouselUI();
+      }
+    }
+
+    // Scroll to section and update active tab state
+    function scrollToSection(sectionId) {
+      const targetElement = document.getElementById(sectionId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+
+        const tabs = document.querySelectorAll('.nav-tab');
+        tabs.forEach(tab => {
+          tab.classList.remove(...NAV_ACTIVE_CLASSES);
+          tab.classList.add(...NAV_INACTIVE_CLASSES);
+        });
+
+        let activeTabId = 'navTabHome';
+        if (sectionId === 'cards-section') activeTabId = 'navTabProjects';
+        if (sectionId === 'certifications-section') activeTabId = 'navTabCerts';
+
+        const activeTab = document.getElementById(activeTabId);
+        if (activeTab) {
+          activeTab.classList.remove(...NAV_INACTIVE_CLASSES);
+          activeTab.classList.add(...NAV_ACTIVE_CLASSES);
+        }
       }
     }
 
@@ -1178,17 +1237,17 @@
           anime({
             targets: backdrop,
             opacity: [0, 1],
-            duration: 250,
+            duration: 300,
             easing: 'easeOutQuad'
           });
 
           anime({
             targets: box,
-            scale: [0.92, 1],
+            scale: [0.94, 1],
             opacity: [0, 1],
-            translateY: [10, 0],
-            duration: 350,
-            easing: 'easeOutCubic'
+            translateY: [16, 0],
+            duration: 420,
+            easing: 'easeOutQuart'
           });
         } else {
           backdrop.style.opacity = '1';
@@ -1208,17 +1267,17 @@
           anime({
             targets: backdrop,
             opacity: [1, 0],
-            duration: 200,
+            duration: 250,
             easing: 'easeInQuad'
           });
 
           anime({
             targets: box,
-            scale: [1, 0.92],
+            scale: [1, 0.94],
             opacity: [1, 0],
-            translateY: [0, 10],
-            duration: 200,
-            easing: 'easeInCubic',
+            translateY: [0, 12],
+            duration: 250,
+            easing: 'easeInQuart',
             complete: function () {
               modal.classList.add('hidden');
               document.body.style.overflow = 'auto';
@@ -1241,37 +1300,74 @@
       }
     });
 
-    // Certifications Tab Switching Function
+    // Certifications Tab Switching Function (with smooth fade transition)
     function switchCertTab(category) {
       const cards = document.querySelectorAll('.cert-card-item');
       const buttons = document.querySelectorAll('.cert-tab-btn');
 
       buttons.forEach(btn => {
-        btn.classList.remove('dark:bg-zinc-100', 'bg-zinc-900', 'dark:text-zinc-900', 'text-zinc-100', 'shadow-sm');
-        btn.classList.add('dark:text-zinc-400', 'text-zinc-600');
+        btn.classList.remove(...NAV_ACTIVE_CLASSES);
+        btn.classList.add(...NAV_INACTIVE_CLASSES);
       });
 
       const activeBtnId = category === 'all' ? 'btnCertAll' : (category === 'national' ? 'btnCertNational' : 'btnCertItq');
       const activeBtn = document.getElementById(activeBtnId);
       if (activeBtn) {
-        activeBtn.classList.add('dark:bg-zinc-100', 'bg-zinc-900', 'dark:text-zinc-900', 'text-zinc-100', 'shadow-sm');
-        activeBtn.classList.remove('dark:text-zinc-400', 'text-zinc-600');
+        activeBtn.classList.remove(...NAV_INACTIVE_CLASSES);
+        activeBtn.classList.add(...NAV_ACTIVE_CLASSES);
       }
 
-      cards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (category === 'all' || cardCategory === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
+      if (typeof anime === 'undefined') {
+        // Anime.js가 없을 때는 즉시 전환으로 폴백
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          card.style.display = (category === 'all' || cardCategory === category) ? 'flex' : 'none';
+        });
+        return;
+      }
+
+      // 1단계: 모든 카드 살짝 페이드아웃
+      anime({
+        targets: Array.from(cards),
+        opacity: [1, 0],
+        translateY: [0, 8],
+        duration: 200,
+        easing: 'easeInQuad',
+        complete: function () {
+          // 2단계: 카테고리에 맞게 표시/숨김 처리
+          const visibleCards = [];
+          cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const shouldShow = (category === 'all' || cardCategory === category);
+            card.style.display = shouldShow ? 'flex' : 'none';
+            if (shouldShow) visibleCards.push(card);
+          });
+
+          // 3단계: 남은 카드들을 순차적으로 페이드인
+          anime({
+            targets: visibleCards,
+            opacity: [0, 1],
+            translateY: [8, 0],
+            delay: anime.stagger(60),
+            duration: 350,
+            easing: 'easeOutQuart'
+          });
         }
       });
     }
 
     // Run Anime.js stagger animations on page load
     window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
       const html = document.documentElement;
       const themeIcon = document.getElementById('themeIcon');
+
+      if (savedTheme === 'light') {
+        html.classList.remove('dark');
+      } else {
+        html.classList.add('dark');
+      }
+
       if (html.classList.contains('dark')) {
         themeIcon.className = 'fa-solid fa-moon text-xs text-zinc-100';
       } else {
@@ -1285,21 +1381,21 @@
         // Hero Section Stagger
         anime({
           targets: '.hero-anim',
-          translateY: [25, 0],
+          translateY: [20, 0],
           opacity: [0, 1],
-          delay: anime.stagger(150, { start: 100 }),
-          duration: 800,
-          easing: 'easeOutCubic'
+          delay: anime.stagger(120, { start: 100 }),
+          duration: 900,
+          easing: 'easeOutQuint'
         });
 
         // Cards Stagger
         anime({
           targets: '.card-anim',
-          translateY: [30, 0],
+          translateY: [24, 0],
           opacity: [0, 1],
-          delay: anime.stagger(180, { start: 500 }),
-          duration: 850,
-          easing: 'easeOutCubic'
+          delay: anime.stagger(140, { start: 450 }),
+          duration: 950,
+          easing: 'easeOutQuint'
         });
       }
     });
