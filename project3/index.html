@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대진전자통신고등학교 신입생 모집 홍보영상 기획서</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Anime.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Pretendard -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    },
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))",
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --primary: 221.2 83.2% 53.3%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --border: 214.3 33.9% 91.8%;
+            --input: 214.3 33.9% 91.8%;
+            --ring: 221.2 83.2% 53.3%;
+        }
+
+        .dark {
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --primary: 217.2 91.2% 59.8%;
+            --primary-foreground: 222.2 47.4% 11.2%;
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --input: 217.2 32.6% 17.5%;
+            --ring: 224.3 76.3% 48%;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+        }
+
+        /* Custom Scrollbar for shadcn sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: hsl(var(--background));
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: hsl(var(--muted-foreground) / 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: hsl(var(--muted-foreground) / 0.5);
+        }
+
+        video::-webkit-media-controls-panel {
+            background-color: rgba(0, 0, 0, 0.35);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col antialiased selection:bg-primary/20">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div
+                    class="bg-primary text-primary-foreground p-2 rounded-lg shadow-sm flex items-center justify-center">
+                    <i data-lucide="video" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-tight">대진전자통신고등학교</span>
+                    <span class="text-xs text-muted-foreground block">신입생 모집 홍보영상 최종 기획서</span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleTheme()"
+                    class="p-2 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
+                    title="테마 변경">
+                    <i data-lucide="sun" id="theme-icon" class="w-4 h-4"></i>
+                </button>
+                <button onclick="scrollToSection('storyboard')"
+                    class="hidden sm:inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">
+                    스토리보드 보기
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+        class="relative py-16 md:py-24 border-b border-border bg-gradient-to-b from-primary/5 via-background to-background overflow-hidden">
+        <div
+            class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none">
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 hero-content">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-6 border border-primary/20">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 실제 비디오 기반 100% 정밀 묘사 기획서
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                실무로 다져진 탄탄한 실력,<br class="hidden sm:inline" />
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">대진전자통신고등학교</span>의
+                미래
+            </h1>
+            <p class="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
+                민우와 서현의 시선으로 담아낸 5개의 실제 비디오 컷 스토리보드 및 캐릭터 비주얼 에셋 가이드입니다.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="scrollToSection('assets')"
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-5 py-2 border border-border shadow-sm">
+                    <i data-lucide="users" class="w-4 h-4 mr-2"></i> 비주얼 에셋 가이드
+                </button>
+                <button onclick="scrollToSection('storyboard')"
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-5 py-2 shadow">
+                    <i data-lucide="film" class="w-4 h-4 mr-2"></i> 5컷 스토리보드 탐색
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Assets Section -->
+    <main class="flex-1 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <section id="assets" class="mb-16">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="p-2 rounded-lg bg-primary/10 text-primary">
+                    <i data-lucide="user-check" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold tracking-tight">비주얼 에셋 가이드 (Visual Elements)</h2>
+                    <p class="text-sm text-muted-foreground">홍보영상 속 주요 등장인물 스타일 및 인상 묘사</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 민우 카드 -->
+                <div
+                    class="rounded-xl border border-border bg-card text-card-foreground shadow-sm p-6 flex flex-col justify-between hover:border-primary/50 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                                남학생 주연
+                            </span>
+                            <span class="text-xs font-mono text-muted-foreground">Character 01</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">민우</h3>
+                        <p class="text-sm text-muted-foreground leading-relaxed">
+                            단정하게 정돈된 헤어스타일, 네이비색 학교 교복 재킷과 흰색 셔츠, 회색 슬랙스를 착용한 스마트하고 신뢰감 주는 인상의 남학생입니다.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-border flex items-center text-xs text-muted-foreground gap-2">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
+                        <span>등교, VR 실습, 코딩, 하교 씬 메인 출연</span>
+                    </div>
+                </div>
+
+                <!-- 서현 카드 -->
+                <div
+                    class="rounded-xl border border-border bg-card text-card-foreground shadow-sm p-6 flex flex-col justify-between hover:border-primary/50 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300">
+                                여학생 주연
+                            </span>
+                            <span class="text-xs font-mono text-muted-foreground">Character 02</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">서현</h3>
+                        <p class="text-sm text-muted-foreground leading-relaxed">
+                            단발머리에 활동적인 느낌을 주는 여학생, 민우와 동일한 디자인의 네이비색 교복 재킷과 회색 주름스커트를 착용한 밝고 집중력 있는 인상입니다.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-border flex items-center text-xs text-muted-foreground gap-2">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
+                        <span>등교 및 IoT 스마트 제어 실습 메인 출연</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Storyboard Section -->
+        <section id="storyboard" class="mb-12">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                <div>
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="p-2 rounded-lg bg-primary/10 text-primary">
+                            <i data-lucide="clapperboard" class="w-6 h-6"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold tracking-tight">실제 비디오 기반 5컷 스토리보드</h2>
+                    </div>
+                    <p class="text-sm text-muted-foreground">각 컷별 비디오 실제 내용, 카메라 앵글, 조명 및 나레이션 자막 가이드</p>
+                </div>
+                <!-- 탭 필터 -->
+                <div class="flex flex-wrap gap-1 bg-muted p-1 rounded-lg border border-border">
+                    <button onclick="filterScenes('all')" id="filter-all"
+                        class="px-3 py-1.5 text-xs font-medium rounded-md bg-background text-foreground shadow-sm transition-all">전체보기</button>
+                    <button onclick="filterScenes('1')" id="filter-1"
+                        class="px-3 py-1.5 text-xs font-medium rounded-md text-muted-foreground hover:text-foreground transition-all">컷
+                        1</button>
+                    <button onclick="filterScenes('2')" id="filter-2"
+                        class="px-3 py-1.5 text-xs font-medium rounded-md text-muted-foreground hover:text-foreground transition-all">컷
+                        2</button>
+                    <button onclick="filterScenes('3')" id="filter-3"
+                        class="px-3 py-1.5 text-xs font-medium rounded-md text-muted-foreground hover:text-foreground transition-all">컷
+                        3</button>
+                    <button onclick="filterScenes('4')" id="filter-4"
+                        class="px-3 py-1.5 text-xs font-medium rounded-md text-muted-foreground hover:text-foreground transition-all">컷
+                        4</button>
+                    <button onclick="filterScenes('6')" id="filter-6"
+                        class="px-3 py-1.5 text-xs font-medium rounded-md text-muted-foreground hover:text-foreground transition-all">컷
+                        5 (6번)</button>
+                </div>
+            </div>
+
+            <div class="space-y-8" id="scene-container">
+
+                <!-- 컷 1 -->
+                <div class="scene-card rounded-2xl border border-border bg-card text-card-foreground shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
+                    data-scene="1">
+                    <div
+                        class="lg:col-span-5 bg-muted/55 relative flex items-center justify-center min-h-[280px] border-b lg:border-b-0 lg:border-r border-border p-4">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-background/80 backdrop-blur-sm border border-border px-2.5 py-1 rounded-md text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            비디오 파일: 1.mp4
+                        </div>
+                        <div class="w-full h-full rounded-xl overflow-hidden shadow-inner bg-black">
+                            <video class="w-full h-full object-cover max-h-[320px]" controls preload="metadata"
+                                poster="../files/media/project3/1.jpeg">
+                                <source src="../files/media/project3/1.mp4" type="video/mp4">
+                                브라우저가 video 태그를 지원하지 않습니다.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold tracking-wider text-primary uppercase">Scene Frame
+                                    01</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">설레는
+                                    등교 (1)</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">새로운 시작, 활기찬 등교길</h3>
+
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                    <span class="font-semibold block text-xs text-muted-foreground mb-1">🎬 비디오 실제
+                                        내용</span>
+                                    <p class="leading-relaxed">아침 햇살이 부드럽게 쏟아지는 학교 교문 안으로 민우와 서현이 가방을 메고 서로 웃으며 대화하며 걸어
+                                        들어옵니다. 주변에는 다른 학생들도 활기찬 발걸음으로 등교하고 있습니다. 두 학생은 카메라를 바라보며 미소를 지으며 걸어갑니다.</p>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">🎥 카메라
+                                            앵글</span>
+                                        <p class="text-xs leading-relaxed">앞으로 걸어오는 인물들을 따라 카메라가 부드럽게 뒤로 후퇴하며 촬영하는 로우 앵글
+                                            트래킹 샷.</p>
+                                    </div>
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">💡 조명 및
+                                            분위기</span>
+                                        <p class="text-xs leading-relaxed">밝고 따뜻한 아침 자연광, 역광이 살짝 비치는 싱그러운 분위기.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-6 pt-4 border-t border-border bg-primary/5 -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-4 sm:p-6 rounded-b-2xl border-x-0 border-b-0">
+                            <span class="font-bold text-xs text-primary uppercase block mb-1">💬 나레이션 자막</span>
+                            <p class="text-sm font-medium italic">"새로운 기술과 꿈이 시작되는 곳, 오늘 하루도 활기차게 시작합니다."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 컷 2 -->
+                <div class="scene-card rounded-2xl border border-border bg-card text-card-foreground shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
+                    data-scene="2">
+                    <div
+                        class="lg:col-span-5 bg-muted/55 relative flex items-center justify-center min-h-[280px] border-b lg:border-b-0 lg:border-r border-border p-4">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-background/80 backdrop-blur-sm border border-border px-2.5 py-1 rounded-md text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            비디오 파일: 2.mp4
+                        </div>
+                        <div class="w-full h-full rounded-xl overflow-hidden shadow-inner bg-black">
+                            <video class="w-full h-full object-cover max-h-[320px]" controls preload="metadata"
+                                poster="../files/media/project3/2.jpeg">
+                                <source src="../files/media/project3/2.mp4" type="video/mp4">
+                                브라우저가 video 태그를 지원하지 않습니다.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold tracking-wider text-primary uppercase">Scene Frame
+                                    02</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">IoT
+                                    스마트 제어 실습 (2)</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">정교한 브레드보드와 아두이노 제어</h3>
+
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                    <span class="font-semibold block text-xs text-muted-foreground mb-1">🎬 비디오 실제
+                                        내용</span>
+                                    <p class="leading-relaxed">IoT 실습실 책상 위에서 서현이 정교한 손놀림으로 브레드보드에 빨간색 점퍼 와이어를 꽂아 아두이노
+                                        보드와 연결합니다. 와이어가 연결되는 순간, 보드 위의 소형 LED 전구에 초록색 불빛이 깜빡이기 시작하고 옆의 태블릿 PC를 조심스럽게
+                                        조작합니다.</p>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">🎥 카메라
+                                            앵글</span>
+                                        <p class="text-xs leading-relaxed">손끝과 태블릿 디스플레이에 초점을 맞춘 익스트림 클로즈업(Extreme
+                                            Close-up)에서 포커스 아웃되는 앵글.</p>
+                                    </div>
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">💡 조명 및
+                                            분위기</span>
+                                        <p class="text-xs leading-relaxed">실험실 내부의 차가운 톤의 백색 LED 조명과 태블릿에서 뿜어져 나오는 은은한
+                                            광원.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-6 pt-4 border-t border-border bg-primary/5 -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-4 sm:p-6 rounded-b-2xl border-x-0 border-b-0">
+                            <span class="font-bold text-xs text-primary uppercase block mb-1">💬 나레이션 자막</span>
+                            <p class="text-sm font-medium italic">"직접 설계하고 연결하며, 사물인터넷 세상의 원리를 몸소 깨우칩니다."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 컷 3 -->
+                <div class="scene-card rounded-2xl border border-border bg-card text-card-foreground shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
+                    data-scene="3">
+                    <div
+                        class="lg:col-span-5 bg-muted/55 relative flex items-center justify-center min-h-[280px] border-b lg:border-b-0 lg:border-r border-border p-4">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-background/80 backdrop-blur-sm border border-border px-2.5 py-1 rounded-md text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            비디오 파일: 3.mp4
+                        </div>
+                        <div class="w-full h-full rounded-xl overflow-hidden shadow-inner bg-black">
+                            <video class="w-full h-full object-cover max-h-[320px]" controls preload="metadata"
+                                poster="../files/media/project3/3.jpeg">
+                                <source src="../files/media/project3/3.mp4" type="video/mp4">
+                                브라우저가 video 태그를 지원하지 않습니다.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold tracking-wider text-primary uppercase">Scene Frame
+                                    03</span>
+                                <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">VR
+                                    콘텐츠 체험 실습 (3)</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">가상과 현실을 잇는 첨단 VR 스튜디오</h3>
+
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                    <span class="font-semibold block text-xs text-muted-foreground mb-1">🎬 비디오 실제
+                                        내용</span>
+                                    <p class="leading-relaxed">넓고 가구가 정돈된 실제 VR 실습 공간의 중심에 선 민우가 VR 헤드셋을 착용한 채 양손에 컨트롤러를
+                                        쥐고 허공을 향해 팔을 뻗어 조작하는 동작을 취합니다. 옆에는 단정한 교복 차림의 멘토 선배가 서서 미소를 지으며 민우의 실습을 격려합니다.
+                                    </p>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">🎥 카메라
+                                            앵글</span>
+                                        <p class="text-xs leading-relaxed">두 인물을 중심으로 카메라가 반원 형태로 부드럽게 회전하며 첨단 장비를 부각하는
+                                            시네마틱 돌리 샷.</p>
+                                    </div>
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">💡 조명 및
+                                            분위기</span>
+                                        <p class="text-xs leading-relaxed">차분하게 정돈된 실내 공간 속에 블루와 퍼플 톤의 화려한 네온 앰비언트 LED
+                                            조명이 주는 조화.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-6 pt-4 border-t border-border bg-primary/5 -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-4 sm:p-6 rounded-b-2xl border-x-0 border-b-0">
+                            <span class="font-bold text-xs text-primary uppercase block mb-1">💬 나레이션 자막</span>
+                            <p class="text-sm font-medium italic">"가상과 현실의 경계를 허무는 VR 실습을 통해 미래형 공간 디자인을 설계합니다."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 컷 4 -->
+                <div class="scene-card rounded-2xl border border-border bg-card text-card-foreground shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
+                    data-scene="4">
+                    <div
+                        class="lg:col-span-5 bg-muted/55 relative flex items-center justify-center min-h-[280px] border-b lg:border-b-0 lg:border-r border-border p-4">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-background/80 backdrop-blur-sm border border-border px-2.5 py-1 rounded-md text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            비디오 파일: 4.mp4
+                        </div>
+                        <div class="w-full h-full rounded-xl overflow-hidden shadow-inner bg-black">
+                            <video class="w-full h-full object-cover max-h-[320px]" controls preload="metadata"
+                                poster="../files/media/project3/4.jpeg">
+                                <source src="../files/media/project3/4.mp4" type="video/mp4">
+                                브라우저가 video 태그를 지원하지 않습니다.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold tracking-wider text-primary uppercase">Scene Frame
+                                    04</span>
+                                <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">VS
+                                    Code 프로그램 코딩 (4)</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">다크 테마 에디터와 협업 코딩</h3>
+
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                    <span class="font-semibold block text-xs text-muted-foreground mb-1">🎬 비디오 실제
+                                        내용</span>
+                                    <p class="leading-relaxed">컴퓨터 화면 가득 다크 테마의 VS Code 에디터 프로그램이 켜져 있고, 알록달록 구문 강조된 소스
+                                        코드들이 띄워져 있습니다. 민우가 화면의 특정 코드 줄을 친근하게 가리키며 설명하고, 옆에 앉은 지혜는 밝은 미소를 지으며 함께 화면을 보며
+                                        마우스와 키보드를 만집니다.</p>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">🎥 카메라
+                                            앵글</span>
+                                        <p class="text-xs leading-relaxed">모니터의 VS Code 코드 화면을 좌측에 배치하고 열정을 담아 코딩을 토론하는
+                                            학생들의 모습을 가로로 담아내는 오버 더 숄더 뷰.</p>
+                                    </div>
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">💡 조명 및
+                                            분위기</span>
+                                        <p class="text-xs leading-relaxed">코딩 모니터 화면의 오색 스크린 빛이 아늑하게 밝혀주는 실내 조명 효과.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-6 pt-4 border-t border-border bg-primary/5 -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-4 sm:p-6 rounded-b-2xl border-x-0 border-b-0">
+                            <span class="font-bold text-xs text-primary uppercase block mb-1">💬 나레이션 자막</span>
+                            <p class="text-sm font-medium italic">"스스로 생각하고 코드로 구현하는 과정 속에서 문제 해결력을 키워나갑니다."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 컷 5 (6번) -->
+                <div class="scene-card rounded-2xl border border-border bg-card text-card-foreground shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
+                    data-scene="6">
+                    <div
+                        class="lg:col-span-5 bg-muted/55 relative flex items-center justify-center min-h-[280px] border-b lg:border-b-0 lg:border-r border-border p-4">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-background/80 backdrop-blur-sm border border-border px-2.5 py-1 rounded-md text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            비디오 파일: 5.mp4 (6번)
+                        </div>
+                        <div class="w-full h-full rounded-xl overflow-hidden shadow-inner bg-black">
+                            <video class="w-full h-full object-cover max-h-[320px]" controls preload="metadata"
+                                poster="../files/media/project3/5.jpeg">
+                                <source src="../files/media/project3/5.mp4" type="video/mp4">
+                                브라우저가 video 태그를 지원하지 않습니다.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold tracking-wider text-primary uppercase">Scene Frame
+                                    05</span>
+                                <span
+                                    class="px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">노을길
+                                    하교 (6번)</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">황금빛 노을 아래 단짝 친구들의 하교길</h3>
+
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                    <span class="font-semibold block text-xs text-muted-foreground mb-1">🎬 비디오 실제
+                                        내용</span>
+                                    <p class="leading-relaxed">모든 일과를 마친 방과 후, 학교 정원의 나무들 사이로 붉고 따스한 노을빛이 가득 물들어 있습니다.
+                                        민우와 지혜, 동현, 수민 네 명의 단짝 친구들이 가방을 어깨에 메고 정원 산책로를 따라 다정하게 대화를 나누며 행복하게 하교합니다.</p>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">🎥 카메라
+                                            앵글</span>
+                                        <p class="text-xs leading-relaxed">걸어가는 친구들의 자연스러운 뒷모습과 옆모습을 따라 부드럽게 뒤로 빠지는 시네마틱
+                                            트래킹 샷.</p>
+                                    </div>
+                                    <div class="bg-muted/50 p-3 rounded-lg border border-border/50">
+                                        <span class="font-semibold block text-xs text-muted-foreground mb-1">💡 조명 및
+                                            분위기</span>
+                                        <p class="text-xs leading-relaxed">화면 전체를 따뜻하고 평화롭게 감싸 안는 주황빛 노을의 감성적인 골든
+                                            아워(Golden Hour) 역광.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-6 pt-4 border-t border-border bg-primary/5 -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-4 sm:p-6 rounded-b-2xl border-x-0 border-b-0">
+                            <span class="font-bold text-xs text-primary uppercase block mb-1">💬 나레이션 자막</span>
+                            <p class="text-sm font-medium italic">"실무로 다져진 탄탄한 실력, 내일의 첨단 기술을 선도할 우리의 미래가 이곳에서 완성됩니다."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Project Summary Banner -->
+        <section
+            class="rounded-2xl border border-border bg-card p-8 shadow-sm text-center mb-8 relative overflow-hidden">
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/5 pointer-events-none">
+            </div>
+            <div class="relative z-10 max-w-2xl mx-auto">
+                <div class="inline-flex p-3 bg-primary/10 text-primary rounded-full mb-4">
+                    <i data-lucide="check-circle" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">실제 비디오 기반 완벽 동기화 완료</h3>
+                <p class="text-sm text-muted-foreground mb-6">
+                    실제로 생성된 비디오 속 캐릭터의 배치와 카메라 움직임을 고스란히 옮겨 담았으며, 미디어 폴더(`../files/media/project3/`)와 매칭되어 홍보영상 자막 및 연출
+                    가이드라인으로 최적화되었습니다.
+                </p>
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 shadow">
+                    <i data-lucide="arrow-up" class="w-4 h-4 mr-2"></i> 상단으로 이동
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border bg-background py-8 text-center text-xs text-muted-foreground">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 대진전자통신고등학교 신입생 모집 홍보영상 기획서. All rights reserved.</p>
+            <div class="flex items-center space-x-4">
+                <span>Visual Asset Guide</span>
+                <span>&bull;</span>
+                <span>Storyboard v1.0</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Theme Toggle Function
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                html.classList.add('dark');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        // Smooth Scroll Helper
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Scene Filter Function
+        function filterScenes(sceneId) {
+            const cards = document.querySelectorAll('.scene-card');
+            const buttons = document.querySelectorAll('[id^="filter-"]');
+
+            // Update button styles
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-background', 'text-foreground', 'shadow-sm');
+                btn.classList.add('text-muted-foreground');
+            });
+
+            const activeBtn = document.getElementById(`filter-${sceneId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-muted-foreground');
+                activeBtn.classList.add('bg-background', 'text-foreground', 'shadow-sm');
+            }
+
+            // Filter cards with Anime.js animation.
+            // Pause any playing video before hiding its card so audio doesn't keep running offscreen.
+            cards.forEach(card => {
+                const sNum = card.getAttribute('data-scene');
+                const video = card.querySelector('video');
+                if (sceneId === 'all' || sNum === sceneId) {
+                    card.style.display = 'grid';
+                    anime({
+                        targets: card,
+                        opacity: [0, 1],
+                        translateY: [20, 0],
+                        duration: 400,
+                        easing: 'easeOutQuad'
+                    });
+                } else {
+                    if (video) video.pause();
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Anime.js Entry Animations
+        window.addEventListener('DOMContentLoaded', () => {
+            // Hero section animation
+            anime({
+                targets: '.hero-content > *',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                delay: anime.stagger(100),
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+
+            // Scene cards initial stagger
+            anime({
+                targets: '.scene-card',
+                opacity: [0, 1],
+                translateY: [40, 0],
+                delay: anime.stagger(150, { start: 300 }),
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+        });
+    </script>
+</body>
+
+</html>
