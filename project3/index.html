@@ -142,9 +142,9 @@
                     title="테마 변경">
                     <i data-lucide="sun" id="theme-icon" class="w-4 h-4"></i>
                 </button>
-                <button onclick="scrollToSection('storyboard')"
-                    class="hidden sm:inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">
-                    스토리보드 보기
+                <button onclick="scrollToSection('final-video')"
+                    class="hidden sm:inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow hover:opacity-90 h-9 px-4 py-2 gap-2">
+                    <i data-lucide="play-circle" class="w-4 h-4"></i> 최종 합본 시청
                 </button>
             </div>
         </div>
@@ -159,7 +159,7 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 hero-content">
             <div
                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-6 border border-primary/20">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 실제 비디오 기반 100% 정밀 묘사 기획서
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 실제 비디오 기반 100% 정밀 묘사 기획서 &amp; 통합본
             </div>
             <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
                 실무로 다져진 탄탄한 실력,<br class="hidden sm:inline" />
@@ -168,16 +168,16 @@
                 미래
             </h1>
             <p class="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-                민우와 서현의 시선으로 담아낸 5개의 실제 비디오 컷 스토리보드 및 캐릭터 비주얼 에셋 가이드입니다.
+                민우와 서현의 시선으로 담아낸 5개의 실제 비디오 컷 스토리보드 및 모든 컷이 결합된 최종 합본 영상을 확인하세요.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <button onclick="scrollToSection('assets')"
-                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-5 py-2 border border-border shadow-sm">
-                    <i data-lucide="users" class="w-4 h-4 mr-2"></i> 비주얼 에셋 가이드
+                <button onclick="scrollToSection('final-video')"
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6 py-2 shadow-lg shadow-primary/25 gap-2">
+                    <i data-lucide="film" class="w-4 h-4"></i> 최종 합본 영상 시청하기
                 </button>
                 <button onclick="scrollToSection('storyboard')"
-                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-5 py-2 shadow">
-                    <i data-lucide="film" class="w-4 h-4 mr-2"></i> 5컷 스토리보드 탐색
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-5 py-2 border border-border shadow-sm">
+                    <i data-lucide="list-video" class="w-4 h-4 mr-2"></i> 개별 컷 스토리보드
                 </button>
             </div>
         </div>
@@ -243,13 +243,55 @@
             </div>
         </section>
 
+        <!-- Final Video Section (New Feature Added) -->
+        <section id="final-video" class="mb-16">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="p-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md">
+                    <i data-lucide="clapperboard" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold tracking-tight">홍보영상 최종 합본 시사회</h2>
+                    <p class="text-sm text-muted-foreground">모든 컷(1~6번)의 시각적 요소와 내레이션이 완벽하게 결합된 마스터 영상</p>
+                </div>
+            </div>
+
+            <div
+                class="rounded-2xl border border-border bg-card text-card-foreground shadow-lg overflow-hidden relative">
+                <div
+                    class="absolute top-4 left-4 z-10 bg-background/90 backdrop-blur-md border border-border px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-2 shadow-md">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                    <span class="text-primary font-semibold">FINAL MASTER CUT:</span> ../files/media/project3/final.mp4
+                </div>
+
+                <div class="w-full bg-black flex items-center justify-center min-h-[400px] md:min-h-[500px]">
+                    <video class="w-full h-full max-h-[600px] object-contain" controls preload="metadata">
+                        <source src="../files/media/project3/final.mp4" type="video/mp4">
+                        브라우저가 video 태그를 지원하지 않습니다.
+                    </video>
+                </div>
+
+                <div
+                    class="p-6 bg-gradient-to-b from-muted/30 to-muted/80 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                        <h4 class="font-bold text-base mb-1">대진전자통신고등학교 2026학년도 신입생 모집 메인 홍보영상</h4>
+                        <p class="text-xs text-muted-foreground">등교(1) → IoT 실습(2) → VR 실습(3) → 코딩(4) → 노을 하교(6) 전 과정을
+                            담은 최종 완성본입니다.</p>
+                    </div>
+                    <a href="../files/media/project3/final.mp4" download
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-5 py-2 shadow gap-2 shrink-0">
+                        <i data-lucide="download" class="w-4 h-4"></i> 최종 영상 다운로드
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Storyboard Section -->
         <section id="storyboard" class="mb-12">
             <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                 <div>
                     <div class="flex items-center space-x-3 mb-2">
                         <div class="p-2 rounded-lg bg-primary/10 text-primary">
-                            <i data-lucide="clapperboard" class="w-6 h-6"></i>
+                            <i data-lucide="film" class="w-6 h-6"></i>
                         </div>
                         <h2 class="text-2xl font-bold tracking-tight">실제 비디오 기반 5컷 스토리보드</h2>
                     </div>
@@ -597,10 +639,9 @@
                 <div class="inline-flex p-3 bg-primary/10 text-primary rounded-full mb-4">
                     <i data-lucide="check-circle" class="w-6 h-6"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-2">실제 비디오 기반 완벽 동기화 완료</h3>
+                <h3 class="text-xl font-bold mb-2">실제 비디오 기반 완벽 동기화 및 최종본 추가 완료</h3>
                 <p class="text-sm text-muted-foreground mb-6">
-                    실제로 생성된 비디오 속 캐릭터의 배치와 카메라 움직임을 고스란히 옮겨 담았으며, 미디어 폴더(`../files/media/project3/`)와 매칭되어 홍보영상 자막 및 연출
-                    가이드라인으로 최적화되었습니다.
+                    `../files/media/project3/final.mp4` 경로의 최종 합본 영상과 개별 컷 스토리보드가 모두 통합되어 홍보영상 연출 가이드라인으로 최적화되었습니다.
                 </p>
                 <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
                     class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 shadow">
@@ -618,7 +659,7 @@
             <div class="flex items-center space-x-4">
                 <span>Visual Asset Guide</span>
                 <span>&bull;</span>
-                <span>Storyboard v1.0</span>
+                <span>Final Master Video Included</span>
             </div>
         </div>
     </footer>
